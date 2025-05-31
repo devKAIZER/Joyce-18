@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joyce @ 18 - Digital Invitation</title>
+
+  <link rel="icon" href="images/logo/L.png" type="image/png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animation.css">
+  <link type="text/css" rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <nav class="navbar fixed-top overlay-navbar py-2" id="navbar">
+    <div class="container d-flex justify-content-center align-items-center">
+      <a href="#landing"><img src="images/logo/L.png" height="40" alt="Logo"></a>
+    </div>
+  </nav>
+
+  <!-- Fullscreen Landing Section -->
+  <section class="landing-section text-white text-center" id="landing">
+    <div class="container">
+      <h1 class="display-1 mb-3">Joyce @ 18</h1>
+      <p class="lead landing-text">
+        A very special occasion awaits! <br>I'm turning 18, and I'd be honored to have you celebrate with me as I step
+        into this new chapter. <br>Continue scrolling to confirm your seat and for more details about my celebration.
+        <br>Can't wait to celebrate with you!
+        <br>
+        <br>Event Date: June 21, 2025<br>
+        <a id="to-maps" href="#map-section" style="text-decoration:none; border: 2px solid white; padding: 4px 10px; border-radius: 5px; color: white;">Venue: CJ Gomez Private Resort</a>
+      </p>
+      <div id="countdown" class="d-flex justify-content-center gap-3 flex-wrap mt-4"></div>
+    </div>
+  </section>
+
+  <!-- Invitation + RSVP Section -->
+  <section class="py-5 fade-in">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="carousel-wrapper overflow-hidden rounded h-100 card-shadow">
+              <div class="carousel-track d-flex h-100" id="carouselTrack"></div>
+            </div>
+          </div>
+        </div>
+        <!-- RSVP Column -->
+        <div class="col-md-6 d-flex" id="reserve-section">
+          <div class="card w-100 h-100 p-4 border border-purple bg-white card-shadow">
+            <form id="rsvpForm" class="needs-validation" novalidate>
+              <h4 class="text-center text-purple">Please RSVP</h4>
+              <p class="text-center mb-4">Fill Out The Form To Reserve Your Seat</p>
+              <div class="form-floating mb-3 position-relative">
+                <select class="form-select" id="attendance" required>
+                  <option value="" disabled selected>Select an option</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="Maybe">Maybe</option>
+                </select>
+                <label for="attendance"><i class="bi bi-calendar-check me-2"></i>Are you coming?</label>
+                <div class="invalid-feedback">Please select an option.</div>
+              </div>
+
+              <div class="form-floating mb-3 position-relative">
+                <input type="text" class="form-control" id="fullname" placeholder="Full Name" required>
+                <label for="fullname"><i class="bi bi-person me-2"></i>Your Name</label>
+                <div class="invalid-feedback">Name is required.</div>
+              </div>
+
+              <div class="form-floating mb-3 position-relative">
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                <label for="email"><i class="bi bi-envelope me-2"></i>Your Email</label>
+                <div class="invalid-feedback">Enter a valid email.</div>
+              </div>
+
+              <div class="form-floating mb-4 position-relative">
+                <textarea class="form-control" placeholder="Additional Comments" id="comments"
+                  style="height: 100px"></textarea>
+                <label for="comments"><i class="bi bi-chat-left-text me-2"></i>Additional Comments</label>
+              </div>
+
+              <button class="btn btn-purple text-white w-100" type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Google Maps Section -->
+  <section id="map-section" class="map-section position-relative text-white fade-in vh-100 d-md-block" style="overflow: hidden; height: 400px;">
+    <div class="position-absolute top-0 start-0 w-100 text-center p-3 bg-opacity-75"
+      style="background-color: rgba(113, 84, 192, 0.6); z-index: 10;">
+      <h3 class="mb-1">Event Location</h3>
+      <p class="mb-0">CJ Gomez Private Resort</p>
+    </div>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3858.591771432747!2d121.13586280991606!3d14.735657173697968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397bb3ce41806a3%3A0x23a52b71b395062d!2sCJ%20Private%20resort!5e0!3m2!1sen!2sph!4v1748591162157!5m2!1sen!2sph"
+      width="100%" height="100%" style="border:0; z-index:1;" allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade" aria-label="Google Map of CJ Gomez Private Resort"
+      class="position-absolute top-0 start-0 w-100 h-100">
+    </iframe>
+  </section>
+
+
+  <!-- Outfit Section -->
+  <section class="container my-4 fade-in">
+    <h4 class="text-center mt-5 mb-4">Outfit Guide</h4>
+    <div class="row g-3">
+      <div class="col-6 col-sm-4 col-md-2 d-flex justify-content-center align-items-center">
+        <img src="images/Outfit/1.png" class="img-fluid card-shadow" alt="Outfit 1">
+      </div>
+      <div class="col-6 col-sm-4 col-md-2 d-flex justify-content-center align-items-center">
+        <img src="images/Outfit/2.png" class="img-fluid card-shadow" alt="Outfit 2">
+      </div>
+      <div class="col-6 col-sm-4 col-md-2 d-flex justify-content-center align-items-center">
+        <img src="images/Outfit/3.png" class="img-fluid card-shadow" alt="Outfit 3">
+      </div>
+      <div class="col-6 col-sm-4 col-md-2 d-flex justify-content-center align-items-center">
+        <img src="images/Outfit/4.png" class="img-fluid card-shadow" alt="Outfit 4">
+      </div>
+      <div class="col-6 col-sm-4 col-md-2 d-flex justify-content-center align-items-center">
+        <img src="images/Outfit/5.png" class="img-fluid card-shadow" alt="Outfit 5">
+      </div>
+      <div class="col-6 col-sm-4 col-md-2 d-flex justify-content-center align-items-center">
+        <img src="images/Outfit/6.png" class="img-fluid card-shadow" alt="Outfit 6">
+      </div>
+    </div>
+
+    <h4 class="text-center mt-4">Color Guide</h4>
+    <div class="row g-3 justify-content-center">
+      <div class="col-4 col-md-2">
+        <div class="d-flex justify-content-center align-items-center p-3">
+          <img src="images/Color/Color1.png" class="img-fluid" style="max-width: 100px; height: auto;">
+        </div>
+      </div>
+      <div class="col-4 col-md-2">
+        <div class="d-flex justify-content-center align-items-center p-3">
+          <img src="images/Color/Color2.png" class="img-fluid" style="max-width: 100px; height: auto;">
+        </div>
+      </div>
+    </div>
+
+    <hr style="border: none; border-top: 2px solid #ccc; margin: 1rem 0;">
+
+    <div class="justify-content-center mt-5 mb-5">
+      <p class="text-center">
+        What are you waiting for? <br>
+        <a href="#reserve-section"
+          style="text-decoration:none; border: 2px solid purple; padding: 4px 10px; border-radius: 5px; color: purple;">
+          Make my seat reservation now</a>
+      </p>
+    </div>
+
+
+  </section>
+
+  <footer
+    style="background-color:#222; color:#eee; text-align:center; padding:20px 10px; font-family: Arial, sans-serif; font-size: 14px;">
+    <p>Crafted with
+      <span style="color:#7154c0; display: inline-block; animation: heartbeat 1.5s infinite;">&#10084;</span>
+      by Kai for Joyce
+    </p>
+    <small>&copy; 2025</small>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
+
+
+  <!-- Modals -->
+
+  <!-- Duplicate Error -->
+  <div id="duplicateModal" class="modal"
+    style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
+    <div
+      style="background:#fff; padding:20px; border-radius:8px; max-width:300px; text-align:center; border-top:6px solid red;">
+      <p style="color:black;">You have already submitted this form.</p>
+      <button onclick="closeModal()"
+        style="margin-top:10px; background:red; color:white; border:none; padding:8px 16px; border-radius:4px; cursor:pointer;">OK</button>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="modal"
+    style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
+    <div
+      style="background:#fff; padding:20px; border-radius:8px; max-width:300px; text-align:center; border-top:6px solid purple;">
+      <p style="color:black;">Thank you for your RSVP!</p>
+      <button onclick="closeSuccessModal()"
+        style="margin-top:10px; background:purple; color:white; border:none; padding:8px 16px; border-radius:4px; cursor:pointer;">Close</button>
+    </div>
+  </div>
+
+  <!-- Duplicate Error -->
+  <div id="errorModal" class="modal"
+    style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
+    <div
+      style="background:#fff; padding:20px; border-radius:8px; max-width:300px; text-align:center; border-top:6px solid red;">
+      <p style="color:black;">There was an error while submitting the form.</p>
+      <button onclick="closeModal()"
+        style="margin-top:10px; background:red; color:white; border:none; padding:8px 16px; border-radius:4px; cursor:pointer;">OK</button>
+    </div>
+  </div>
+
+  <!-- Add to Calendar Fab -->
+  <button onclick="openCalendar()"
+    style="position: fixed; bottom: 20px; right: 20px; background-color: #7154c0; color: white; border: none; border-radius: 30px; padding: 8px 16px; font-size: 14px; box-shadow: 0 3px 5px rgba(0,0,0,0.1); cursor: pointer;">
+    Add to Calendar
+  </button>
+
+
+</body>
+
+</html>

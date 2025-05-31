@@ -1,0 +1,120 @@
+body {
+  font-family: 'EB Garamond', serif;
+  background-color: #f8f9fa;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.overlay-navbar {
+  background-color: rgba(113, 84, 192, 0.4);
+  backdrop-filter: blur(3px);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+#navbar {
+  transition: opacity 0.4s ease;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#navbar.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.landing-section {
+  height: 100vh;
+  display: flex;
+  background-image: url("../images/backgroundNewDark.png");
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.landing-text {
+  font-size: clamp(0.875rem, 1vw + 0.5rem, 1.125rem);
+}
+
+.countdown-box {
+  background-color: rgba(113, 84, 192, 0.4);
+  backdrop-filter: blur(3px);
+  width: 70px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.countdown-box .number {
+  font-family: inherit;
+  font-size: 1.2rem;
+}
+
+.countdown-box .label {
+  font-size: 0.8rem;
+}
+
+.card-shadow {
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.2);
+}
+/* Image Carousel Design */
+.carousel-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 2s ease-in-out;
+}
+
+.carousel-track img {
+  width: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+@keyframes slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+
+/* Form Design */
+.text-purple {
+  color: #7154c0;
+}
+
+#comments {
+  resize: none;
+}
+
+.border-purple {
+  border: 3px solid #7154c0 !important;
+}
+
+.btn-purple {
+  background-color: #7154c0;
+  border: none;
+}
+
+.btn-purple:hover {
+  background-color: #59329c;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #6f42c1;
+  box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.25);
+}
+
+.map-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
