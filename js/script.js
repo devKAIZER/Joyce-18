@@ -194,7 +194,7 @@ function showErrorModal() {
   document.getElementById('errorModal').style.display = 'flex';
 }
 
-function closeErrorModal() {
+function closeDuplicateModal() {
   document.getElementById('errorModal').style.display = 'none';
 }
 
