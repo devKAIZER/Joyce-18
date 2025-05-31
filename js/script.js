@@ -35,12 +35,12 @@ function createCountdownBox(value, label) {
 
 // Animation for Image Carousel
 const images = [
-  "images/Invitation/Front.png",
-  "images/Invitation/P1.png",
-  "images/Invitation/P2.png",
-  "images/Invitation/P3.png",
-  "images/Invitation/P4.png",
-  "images/Invitation/P5.png"
+  "images/Invitation/Front.webp",
+  "images/Invitation/P1.webp",
+  "images/Invitation/P2.webp",
+  "images/Invitation/P3.webp",
+  "images/Invitation/P4.webp",
+  "images/Invitation/P5.webp"
 ];
 
 const track = document.getElementById("carouselTrack");
@@ -86,11 +86,11 @@ async function getIP() {
 }
 
 async function hashString(message) {
-  const msgBuffer = new TextEncoder().encode(message);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  const sha = new jsSHA("SHA-256", "TEXT");
+  sha.update(message);
+  return sha.getHash("HEX");
 }
+
 
 async function checkDuplicate(ipHash) {
   const queryUrl = `https://sheetdb.io/api/v1/3ond5s0suc2ir/search?sheet=RSVPfromSite&Hash=${ipHash}`;
@@ -194,7 +194,7 @@ function showErrorModal() {
   document.getElementById('errorModal').style.display = 'flex';
 }
 
-function closeDuplicateModal() {
+function closeErrorModal() {
   document.getElementById('errorModal').style.display = 'none';
 }
 

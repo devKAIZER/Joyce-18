@@ -26,7 +26,7 @@ body {
 .landing-section {
   height: 100vh;
   display: flex;
-  background-image: url("../images/backgroundNewDark.png");
+  background-image: url("../images/backgroundNewDark.webp");
   background-size: cover;
   align-items: center;
   justify-content: center;
