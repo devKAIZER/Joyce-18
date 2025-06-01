@@ -160,8 +160,10 @@ form.addEventListener('submit', async (e) => {
       EmailAddress: form.email.value.trim(),
       Response: form.attendance.value,
       Comments: form.comments.value.trim(),
+      ContactNumber: form.contactNumber.value.trim(),
       Hash: ipHash
     };
+
     await submitForm(formData, sheetsUrl);
     showSuccessModal();
     form.reset();
