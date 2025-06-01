@@ -11,7 +11,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/jssha/dist/sha256.min.js"></script>
-  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" href="images/logo/L.png" type="image/png">
   <link rel="stylesheet" href="css/animation.css">
 </head>
@@ -44,21 +44,25 @@
   <!-- Invitation + RSVP Section -->
   <section class="py-5 fade-in">
     <div class="container">
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="card h-100">
+      <div class="row g-4 align-items-stretch">
+
+        <!-- Carousel Column -->
+        <div class="col-md-6 d-flex">
+          <div class="card w-100 h-100">
             <div class="carousel-wrapper overflow-hidden rounded h-100 card-shadow">
               <div class="carousel-track d-flex h-100" id="carouselTrack"></div>
             </div>
           </div>
         </div>
+
         <!-- RSVP Column -->
-        <div class="col-md-6 d-flex" id="reserve-section">
-          <div class="card w-100 h-100 p-4 border border-purple bg-white card-shadow">
-            <form id="rsvpForm" class="needs-validation" novalidate>
+        <div class="col-md-6 d-flex">
+          <div class="card w-100 h-100 d-flex flex-column p-4 border border-purple bg-white card-shadow">
+            <form id="rsvpForm" class="needs-validation d-flex flex-column h-100" novalidate>
               <h4 class="text-center text-purple">Please RSVP</h4>
               <p class="text-center mb-4">Fill Out The Form To Reserve Your Seat</p>
-              <div class="form-floating mb-3 position-relative">
+
+              <div class="form-floating mb-3">
                 <select class="form-select" id="attendance" required>
                   <option value="" disabled selected>Select an option</option>
                   <option value="Yes">Yes</option>
@@ -69,30 +73,34 @@
                 <div class="invalid-feedback">Please select an option.</div>
               </div>
 
-              <div class="form-floating mb-3 position-relative">
+              <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="fullname" placeholder="Full Name" required>
                 <label for="fullname"><i class="bi bi-person me-2"></i>Your Name</label>
                 <div class="invalid-feedback">Name is required.</div>
               </div>
 
-              <div class="form-floating mb-3 position-relative">
+              <div class="form-floating mb-3">
                 <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
                 <label for="email"><i class="bi bi-envelope me-2"></i>Your Email</label>
                 <div class="invalid-feedback">Enter a valid email.</div>
               </div>
 
-              <div class="form-floating mb-4 position-relative">
-                <textarea class="form-control" placeholder="Additional Comments" id="comments"
-                  style="height: 100px"></textarea>
+              <div class="form-floating mb-3 flex-grow-1">
+                <textarea class="form-control h-100" placeholder="Additional Comments" id="comments"
+                  style="min-height: 100px"></textarea>
                 <label for="comments"><i class="bi bi-chat-left-text me-2"></i>Additional Comments</label>
               </div>
 
-              <button class="btn btn-purple text-white w-100" type="submit">Submit</button>
+              <button id="submitBtn" class="btn btn-purple text-white w-100 mt-auto" type="submit">
+                <span class="btn-text">Submit</span>
+                <span class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
+              </button>
+
             </form>
           </div>
         </div>
+
       </div>
-    </div>
     </div>
   </section>
 
@@ -195,10 +203,10 @@
   <div id="successModal" class="modal"
     style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
     <div
-      style="background:#fff; padding:20px; border-radius:8px; max-width:300px; text-align:center; border-top:6px solid green;">
+      style="background:#fff; padding:20px; border-radius:8px; max-width:300px; text-align:center; border-top:6px solid #7154c0;">
       <p style="color:black;">Thank you for your response!</p>
       <button onclick="closeSuccessModal()"
-        style="margin-top:10px; background:green; color:white; border:none; padding:8px 16px; border-radius:4px; cursor:pointer;">OK</button>
+        style="margin-top:10px; background:#7154c0; color:white; border:none; padding:8px 16px; border-radius:4px; cursor:pointer;">OK</button>
     </div>
   </div>
 
@@ -221,4 +229,5 @@
 
 
 </body>
+
 </html>

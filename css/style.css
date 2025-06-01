@@ -108,7 +108,7 @@ body {
 }
 
 .form-control:focus, .form-select:focus {
-  border-color: #6f42c1;
+  border-color: #7154c0;
   box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.25);
 }
 
@@ -117,4 +117,17 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+}
+
+#submitBtn {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-border {
+  position: absolute;
+  vertical-align: middle;
+  color: #7154c0;
 }

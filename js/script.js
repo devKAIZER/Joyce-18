@@ -132,6 +132,9 @@ async function submitForm(data, sheetsUrl) {
   return res.json();
 }
 
+const submitBtn = document.getElementById('submitBtn');
+const spinner = submitBtn.querySelector('.spinner-border');
+const btnText = submitBtn.querySelector('.btn-text');
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -142,6 +145,10 @@ form.addEventListener('submit', async (e) => {
   }
   submitting = true;
 
+  submitBtn.disabled = true;
+  spinner.classList.remove('d-none');
+  btnText.textContent = 'Submitting...';
+
   const sheetsUrl = 'https://sheetdb.io/api/v1/3ond5s0suc2ir?sheet=RSVPfromSite';
   try {
     const ip = await getIP();
@@ -149,8 +156,7 @@ form.addEventListener('submit', async (e) => {
     const ipHash = await hashString(ip);
     const isDuplicate = await checkDuplicate(ipHash);
     if (isDuplicate) {
-      showDuplicateModal()
-      submitting = false;
+      showDuplicateModal();
       return;
     }
     const formData = {
@@ -161,13 +167,17 @@ form.addEventListener('submit', async (e) => {
       Hash: ipHash
     };
     await submitForm(formData, sheetsUrl);
-    showSuccessModal()
+    showSuccessModal();
     form.reset();
     form.classList.remove('was-validated');
   } catch (err) {
     alert('Submission failed: ' + err.message);
+  } finally {
+    submitting = false;
+    submitBtn.disabled = false;
+    spinner.classList.add('d-none');
+    btnText.textContent = 'Submit';
   }
-  submitting = false;
 });
 
 
@@ -194,7 +204,7 @@ function showErrorModal() {
   document.getElementById('errorModal').style.display = 'flex';
 }
 
-function closeDuplicateModal() {
+function closeErrorModal() {
   document.getElementById('errorModal').style.display = 'none';
 }
 
