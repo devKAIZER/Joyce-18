@@ -49,8 +49,12 @@
         <!-- Carousel Column -->
         <div class="col-md-6 d-flex">
           <div class="card w-100 h-100">
-            <div class="carousel-wrapper overflow-hidden rounded h-100 card-shadow">
+            <div class="carousel-wrapper overflow-hidden rounded h-100 card-shadow position-relative">
               <div class="carousel-track d-flex h-100" id="carouselTrack"></div>
+              <button id="prevBtn"
+                class="btn btn-secondary position-absolute top-50 start-0 translate-middle-y">‹</button>
+              <button id="nextBtn"
+                class="btn btn-secondary position-absolute top-50 end-0 translate-middle-y">›</button>
             </div>
           </div>
         </div>

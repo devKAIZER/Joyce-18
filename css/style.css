@@ -73,10 +73,21 @@ body {
   transition: transform 2s ease-in-out;
 }
 
-.carousel-track img {
+#carouselTrack img {
   width: 100%;
   flex-shrink: 0;
-  object-fit: cover;
+}
+
+#prevBtn, #nextBtn {
+  background-color: #6f42c1; /* custom purple */
+  opacity: 0.8;
+  border: none;
+  color: white;
+}
+
+#prevBtn:hover, #nextBtn:hover {
+  background-color: #5a359a; /* darker purple on hover */
+  color: white;
 }
 
 @keyframes slide {

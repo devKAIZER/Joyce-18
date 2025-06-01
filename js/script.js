@@ -33,7 +33,6 @@ function createCountdownBox(value, label) {
   `;
 }
 
-// Animation for Image Carousel
 const images = [
   "images/Invitation/Front.webp",
   "images/Invitation/P1.webp",
@@ -44,11 +43,7 @@ const images = [
 ];
 
 const track = document.getElementById("carouselTrack");
-
-// Duplicate first image at end for seamless loop
-const loopImages = [...images, images[0]];
-
-loopImages.forEach(src => {
+images.forEach(src => {
   const img = document.createElement("img");
   img.src = src;
   track.appendChild(img);
@@ -56,20 +51,21 @@ loopImages.forEach(src => {
 
 let index = 0;
 
-function slideCarousel() {
-  index++;
+function updateCarousel() {
+  track.style.transition = 'transform 0.5s ease-in-out';
   track.style.transform = `translateX(-${index * 100}%)`;
-
-  if (index === images.length) {
-    setTimeout(() => {
-      track.style.transition = 'none';
-      track.style.transform = 'translateX(0)';
-      index = 0;
-      void track.offsetWidth;
-      track.style.transition = 'transform 2s ease-in-out';
-    }, 2000); // after slide animation
-  }
 }
+
+document.getElementById("nextBtn").addEventListener("click", () => {
+  index = (index + 1) % images.length;
+  updateCarousel();
+});
+
+document.getElementById("prevBtn").addEventListener("click", () => {
+  index = (index - 1 + images.length) % images.length;
+  updateCarousel();
+});
+
 
 // RSVP Forms Script
 const form = document.getElementById('rsvpForm');
