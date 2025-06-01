@@ -285,7 +285,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-setInterval(slideCarousel, 7000); // 5s wait + 2s slide
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
