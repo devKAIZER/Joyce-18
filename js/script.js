@@ -34,12 +34,12 @@ function createCountdownBox(value, label) {
 }
 
 const images = [
-  "images/Invitation/Front.webp",
-  "images/Invitation/P1.webp",
-  "images/Invitation/P2.webp",
-  "images/Invitation/P3.webp",
-  "images/Invitation/P4.webp",
-  "images/Invitation/P5.webp"
+  "images/Invitation/Front.webp?v=2.0",
+  "images/Invitation/P1.webp?v=2.0",
+  "images/Invitation/P2.webp?v=2.0",
+  "images/Invitation/P3.webp?v=2.0",
+  "images/Invitation/P4.webp?v=2.0",
+  "images/Invitation/P5.webp?v=2.0"
 ];
 
 const track = document.getElementById("carouselTrack");
@@ -69,68 +69,47 @@ document.getElementById("prevBtn").addEventListener("click", () => {
 
 // RSVP Forms Script
 const form = document.getElementById('rsvpForm');
+const submitBtn = document.getElementById('submitBtn');
+const spinner = submitBtn.querySelector('.spinner-border');
+const btnText = submitBtn.querySelector('.btn-text');
+
 let submitting = false;
 
-async function getIP() {
-  try {
-    const res = await fetch('https://api64.ipify.org?format=json', { cache: "no-store" });
-    const data = await res.json();
-    return data.ip;
-  } catch {
-    return null;
-  }
-}
+async function checkDuplicate(email, contact) {
+  const baseUrl = 'https://sheetdb.io/api/v1/3ond5s0suc2ir/search?sheet=RSVPfromSite';
 
-async function hashString(message) {
-  const sha = new jsSHA("SHA-256", "TEXT");
-  sha.update(message);
-  return sha.getHash("HEX");
-}
-
-
-async function checkDuplicate(ipHash) {
-  const queryUrl = `https://sheetdb.io/api/v1/3ond5s0suc2ir/search?sheet=RSVPfromSite&Hash=${ipHash}`;
-  try {
-    const res = await fetch(queryUrl, { cache: "no-store" });
+  async function searchByField(field, value) {
+    if (!value) return null;
+    const url = `${baseUrl}&${field}=${encodeURIComponent(value)}`;
+    const res = await fetch(url, { cache: 'no-store' });
     if (!res.ok) {
       const text = await res.text();
       console.error('Error response:', text);
       throw new Error('Failed to query SheetsDB');
     }
     const data = await res.json();
-    return data.length > 0;
-  } catch (err) {
-    console.error('Fetch failed:', err);
-    throw err;
+    return data.length > 0 ? data[0] : null;
   }
+
+  let row = await searchByField('EmailAddress', email);
+  if (row) return row;
+
+  row = await searchByField('ContactNumber', contact);
+  if (row) return row;
+
+  return null;
 }
 
-
-async function submitForm(data, sheetsUrl) {
-  const payload = {
-    data: [data]
-  };
-
-  const res = await fetch(sheetsUrl, {
+async function submitForm(data, url) {
+  const payload = { data: [data] };
+  const res = await fetch(url, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify(payload)
   });
-
-  if (!res.ok) {
-    const errorText = await res.text();
-    throw new Error(`HTTP ${res.status}: ${errorText}`);
-  }
-
+  if (!res.ok) throw new Error(await res.text());
   return res.json();
 }
-
-const submitBtn = document.getElementById('submitBtn');
-const spinner = submitBtn.querySelector('.spinner-border');
-const btnText = submitBtn.querySelector('.btn-text');
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -139,32 +118,40 @@ form.addEventListener('submit', async (e) => {
     form.classList.add('was-validated');
     return;
   }
-  submitting = true;
 
+  if (localStorage.getItem('hasSubmitted')) {
+    console.log('Duplicate entry detected on this device.');
+    showDuplicateModal();
+    return;
+  }
+
+  submitting = true;
   submitBtn.disabled = true;
   spinner.classList.remove('d-none');
   btnText.textContent = 'Submitting...';
 
-  const sheetsUrl = 'https://sheetdb.io/api/v1/3ond5s0suc2ir?sheet=RSVPfromSite';
   try {
-    const ip = await getIP();
-    if (!ip) throw new Error('Could not determine IP address.');
-    const ipHash = await hashString(ip);
-    const isDuplicate = await checkDuplicate(ipHash);
-    if (isDuplicate) {
+    const name = form.fullname.value.trim();
+    const email = form.email.value.trim();
+    const contact = form.contactNumber.value.trim();
+
+    const existingEntry = await checkDuplicate(email, contact);
+    if (existingEntry) {
+      console.log('Duplicate entry detected in database:', existingEntry);
       showDuplicateModal();
       return;
     }
+
     const formData = {
-      Name: form.fullname.value.trim(),
-      EmailAddress: form.email.value.trim(),
+      Name: name,
+      EmailAddress: email,
       Response: form.attendance.value,
       Comments: form.comments.value.trim(),
-      ContactNumber: form.contactNumber.value.trim(),
-      Hash: ipHash
+      ContactNumber: contact
     };
 
-    await submitForm(formData, sheetsUrl);
+    await submitForm(formData, 'https://sheetdb.io/api/v1/3ond5s0suc2ir?sheet=RSVPfromSite');
+    localStorage.setItem('hasSubmitted', 'true');
     showSuccessModal();
     form.reset();
     form.classList.remove('was-validated');
